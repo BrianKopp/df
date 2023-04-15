@@ -15,6 +15,21 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- My plugins here
 
+  -- LSP Server
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'b0o/schemastore.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
+    },
+    config = function()
+      require('user/plugins/lspconfig')
+    end,
+  }
+
   -- NvimTree file editor
   use {
     'kyazdani42/nvim-tree.lua',
