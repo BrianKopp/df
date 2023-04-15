@@ -15,6 +15,22 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- My plugins here
 
+  -- Syntax hightlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+    end,
+    requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    config = function()
+      require('user/plugins/treesitter')
+    end,
+  }
+
+
   -- LSP Server
   use {
     'neovim/nvim-lspconfig',
