@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
 	  'nvim-telescope/telescope-live-grep-args.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     },
-	config = function()
+    config = function()
       require('user/plugins/telescope')
     end,
   }
