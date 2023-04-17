@@ -23,6 +23,12 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Git fugitive
+  use {
+    'tpope/vim-fugitive',
+    requires = 'tpope/vim-rhubarb'
+  }
+
   -- Fuzzy search
   use {
     'nvim-telescope/telescope.nvim',
