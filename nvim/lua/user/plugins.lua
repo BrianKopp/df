@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
     requires = 'tpope/vim-rhubarb'
   }
 
+  -- Git Maximizer
+  use 'szw/vim-maximizer'
+
   -- Fuzzy search
   use {
     'nvim-telescope/telescope.nvim',
