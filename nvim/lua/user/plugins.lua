@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
     requires = 'tpope/vim-rhubarb'
   }
 
-  -- Git Maximizer
+  -- VIM Maximizer
   use 'szw/vim-maximizer'
 
   -- Fuzzy search
