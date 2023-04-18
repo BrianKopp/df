@@ -11,3 +11,5 @@ vim.opt.softtabstop = 0
 vim.opt.autoindent = true
 -- vim.opt.backspace = indent,eol,start
 
+vim.opt.wrap = false
+
