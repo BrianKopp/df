@@ -112,14 +112,6 @@ return require('packer').startup(function(use)
     end,
   }
 
-  -- Display indentation lines
-  use {
-      'lukas-reineke/indent-blankline.nvim',
-      config = function()
-          require('user/plugins/indent-blankline')
-      end,
-  }
-
   -- Autopairs
   use {
     'windwp/nvim-autopairs',
@@ -128,6 +120,25 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- auto indent
+  use {
+    'nmac427/guess-indent.nvim',
+    config = function() require('guess-indent').setup {} end,
+  }
+
+  -- Github Copilot
+  use {
+    'github/copilot.vim',
+  }
+
+  -- Split Lines
+  use {
+    'AndrewRadev/splitjoin.vim',
+    config = function()
+      vim.g.splitjoin_php_method_chain_full = 1
+      vim.g.splitjoin_trailing_comma = 1
+    end,
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
