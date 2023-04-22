@@ -109,7 +109,6 @@ kn() {
 kcurlname() {
     kubectl run -i --tty --rm --image=radial/busyboxplus:curl --restart=Never $1 -- sh
 }
-unalias klf
 klf() {
     if [[ $2 -eq 0 ]]
     then
@@ -146,7 +145,6 @@ kegtop() {
 ketop() {
     kubectl get events --sort-by=".lastTimestamp" | tail -n 20 -r
 }
-unalias kca
 kca() {
     kubectl logs -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}') | tail -n 50
 }
