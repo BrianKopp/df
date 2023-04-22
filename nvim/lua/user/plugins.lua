@@ -45,6 +45,16 @@ return require('packer').startup(function(use)
       require('user/plugins/telescope')
     end,
   }
+  -- harpoon
+  use {
+    'ThePrimeagen/harpoon',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('user/plugins/harpoon')
+    end,
+  }
 
   -- Syntax hightlighting
   use {
