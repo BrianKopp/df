@@ -24,3 +24,145 @@ gsu() {
     git branch --set-upstream-to=origin/$CURRENT_BRANCH $CURRENT_BRANCH
 }
 
+# Word count
+alias wcdir="(find . -type f -print0 | xargs -0 cat) | wc -l"
+wcsubdir() {
+    DEPTH="1"
+    if [[ $1 -gt 0 ]]; then
+        DEPTH=$1
+    fi
+    find . -maxdepth $DEPTH -type d | grep ./ | while read line; do CT=$((find $line -type f -print0 | xargs -0 cat) | wc -l); echo "$CT $line"; done | sort -nr
+}
+
+# terragrunt aliases
+alias ti="terragrunt init"
+alias tp="terragrunt plan"
+alias ta="terragrunt apply"
+alias timp="terragrunt import"
+
+# kubernetes aliases
+alias k="kubectl"
+alias kp="kubectl get pods"
+alias kpa="kubectl get pods --all-namespaces"
+alias kpag="kubectl get pods --all-namespaces | grep"
+alias kpg="kubectl get pods | grep"
+alias kpw="kubectl get pods -o wide"
+alias kpwg="kubectl get pods -o wide | grep"
+alias kpaw="kubectl get pods -o wide --all-namespaces"
+alias kpawg="kubectl get pods -o wide --all-namespaces | grep"
+alias kpo="kubectl get pod -o yaml"
+alias kpbad="kubectl get pods -o wide --all-namespaces | grep -vE 'Running|Completed'"
+alias keg="kubectl get events | grep"
+alias ks="kubectl get services"
+alias ksg="kubectl get services | grep"
+alias kso="kubectl get services -o yaml"
+alias ki="kubectl get ingress"
+alias kio="kubectl get ingress -o yaml"
+alias kig="kubectl get ingress | grep"
+alias kcc="kubectl config current-context"
+alias kuc="kubectl config use-context"
+alias kcurl="kubectl run -i --tty --rm --image=radial/busyboxplus:curl --restart=Never curl -- sh"
+alias kredis="kubectl run -i --tty --rm --image=goodsmileduck/redis-cli:latest --restart=Never rediscli -- sh"
+alias kdebian="kubectl run -i --tty --rm --image=debian:stable --restart=Never debian -- bash"
+alias kl="kubectl logs"
+alias mk="minikube"
+alias msu="minikube service --url"
+alias kdecode="k get secrets -o go-template='{{range \$k,\$v := .data}}{{\$k}}{{\": \\\"\"}}{{\$v | base64decode }}{{\"\\\"\\n\"}}{{end}}'"
+
+# AWS MFA update
+alias mfa="aws-mfa --profile bb"
+
+# docker aliases
+alias dimg="docker images"
+alias dimgg="docker images | grep"
+alias dps="docker ps"
+alias db="docker build"
+alias dk="docker kill"
+alias dc="docker compose"
+alias docker-compose="docker compose"
+
+# dns stuff
+alias mondns="sudo tcpdump -l port 53 2>/dev/null | grep --line-buffered ' A? ' | cut -d' ' -f8"
+alias ns="nslookup"
+alias nsbust="dscacheutil -flushcache"
+alias nsns="nslookup -query=ns"
+alias nscname="nslookup -query=cname"
+alias ttl="dig +noauthority +noquestion +nostats"
+
+# Laravel Sail
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
+# AWS assume role stuff
+awssts() {
+    SOURCE_PROFILE="$1"
+    TARGET_ROLE="$2"
+    RESPONSE=$(aws --profile $SOURCE_PROFILE sts assume-role --role-arn $TARGET_ROLE --role-session-name kopp)
+    export AWS_ACCESS_KEY_ID=$(echo $RESPONSE | jq -r .Credentials.AccessKeyId)
+    export AWS_SECRET_ACCESS_KEY=$(echo $RESPONSE | jq -r .Credentials.SecretAccessKey)
+    export AWS_SESSION_TOKEN=$(echo $RESPONSE | jq -r .Credentials.SessionToken)
+}
+
+# Functions
+kn() {
+    kubectl config set-context --current --namespace="$1"
+}
+kcurlname() {
+    kubectl run -i --tty --rm --image=radial/busyboxplus:curl --restart=Never $1 -- sh
+}
+unalias klf
+klf() {
+    if [[ $2 -eq 0 ]]
+    then
+        kubectl logs -f $1
+    else
+        kubectl logs -n $1 -f $2
+    fi
+}
+klfg() {
+	if [[ $3 -eq 0 ]]
+	then
+		kubectl logs -f $1 | grep $2
+	else
+		kubectl logs -n $1 -f $2 | grep $3
+	fi
+}
+klg() {
+	if [[ $3 -eq 0 ]]
+	then
+		kubectl logs $1 | grep $2
+	else
+		kubectl logs -n $1 $2 | grep $3
+	fi
+}
+kld() {
+    kubectl logs --all-containers=true --follow deployment/$1
+}
+kflapp() {
+	kubectl logs -f --all-containers=true --max-log-requests=30 -l app=$1
+}
+kegtop() {
+    kubectl get events --sort-by=".lastTimestamp" | grep $1 | tail -n 20 -r
+}
+ketop() {
+    kubectl get events --sort-by=".lastTimestamp" | tail -n 20 -r
+}
+unalias kca
+kca() {
+    kubectl logs -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}') | tail -n 50
+}
+kcaf() {
+    kubectl logs -f -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}')
+}
+poll() {
+     while true; do $@ ; echo ""; sleep 0.5; done
+}
+pollpods() {
+    while true; do kubectl get pods --all-namespaces -o wide | grep $1 ; echo ""; sleep 0.5; done
+}
+pollbad() {
+    while true; do kubectl get pods --all-namespaces -o wide | grep -vE 'cattle|Running|Completed' ; echo ""; sleep 0.5; done
+}
+pollhpa() {
+    while true; do kubectl get hpa --all-namespaces | grep $1 ; echo ""; sleep 0.5; done
+}
+
