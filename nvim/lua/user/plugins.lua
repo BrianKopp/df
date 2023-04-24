@@ -15,11 +15,19 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- My plugins here
 
-  -- Theme
+  -- -- Theme
+  -- use {
+  --   'folke/tokyonight.nvim',
+  --   config = function()
+  --     require('user/plugins/theme')
+  --   end,
+  -- }
+
   use {
-    'folke/tokyonight.nvim',
+    'rose-pine/neovim',
+    as = 'rose-pine',
     config = function()
-      require('user/plugins/theme')
+      vim.cmd('colorscheme rose-pine')
     end,
   }
 
