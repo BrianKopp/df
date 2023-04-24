@@ -23,6 +23,18 @@ return require('packer').startup(function(use)
     end,
   }
 
+
+  -- Session saving
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/src", "~/src/bb", "~/src/personal", "~/src/public", "~/src/tutorials", "~/Downloads", "/"},
+      }
+    end
+  }
+
   -- Git fugitive
   use {
     'tpope/vim-fugitive',
