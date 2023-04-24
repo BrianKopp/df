@@ -91,6 +91,8 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Treesitter Context
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- LSP Server
   use {
