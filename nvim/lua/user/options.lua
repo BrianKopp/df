@@ -11,5 +11,9 @@ vim.opt.softtabstop = 0
 vim.opt.autoindent = true
 -- vim.opt.backspace = indent,eol,start
 
+vim.opt.scrolloff = 8
+
 vim.opt.wrap = false
+
+vim.opt.shell = "/bin/zsh"
 
