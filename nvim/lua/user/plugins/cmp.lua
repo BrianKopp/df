@@ -47,7 +47,25 @@ cmp.setup.filetype('gitcommit', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+local lspconfig = require('lspconfig')
+
 require('lspconfig').intelephense.setup({
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    intelephense = {
+       environment = {
+        includePaths = {
+          "/Users/briankopp/src/bb/app.bombbomb.com/include",
+          "/Users/briankopp/src/bb/app.bombbomb.com/www",
+          "/Users/briankopp/src/bb/app.bombbomb.com/api",
+          "/Users/briankopp/src/bb/app.bombbomb.com/www/app/include/Classes",
+        }
+      }
+    }
+  }
 })
 
+lspconfig.tsserver.setup {
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+}
