@@ -94,61 +94,61 @@ return require('packer').startup(function(use)
   -- Treesitter Context
   use 'nvim-treesitter/nvim-treesitter-context'
 
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    requires = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {                                      -- Optional
-        'williamboman/mason.nvim',
-        run = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+  -- use {
+  --   'VonHeikemen/lsp-zero.nvim',
+  --   branch = 'v2.x',
+  --   requires = {
+  --     -- LSP Support
+  --     {'neovim/nvim-lspconfig'},             -- Required
+  --     {                                      -- Optional
+  --       'williamboman/mason.nvim',
+  --       run = function()
+  --         pcall(vim.cmd, 'MasonUpdate')
+  --       end,
+  --     },
+  --     {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+  --     -- Autocompletion
+  --     {'hrsh7th/nvim-cmp'},     -- Required
+  --     {'hrsh7th/cmp-nvim-lsp'}, -- Required
+  --     {'L3MON4D3/LuaSnip'},     -- Required
+  --   },
+  --   config = function()
+  --     require('user/plugins/lsp')
+  --   end,
+  -- }
+
+  -- LSP Server
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'b0o/schemastore.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
     },
     config = function()
-      require('user/plugins/lsp')
+      require('user/plugins/lspconfig')
     end,
   }
 
-  -- LSP Server
-  -- use {
-  --   'neovim/nvim-lspconfig',
-  --   requires = {
-  --     'williamboman/mason.nvim',
-  --     'williamboman/mason-lspconfig.nvim',
-  --     'b0o/schemastore.nvim',
-  --     'jose-elias-alvarez/null-ls.nvim',
-  --     'jayp0521/mason-null-ls.nvim',
-  --   },
-  --   config = function()
-  --     require('user/plugins/lspconfig')
-  --   end,
-  -- }
-
-  -- -- Auto completion
-  -- use {
-  --   'hrsh7th/nvim-cmp',
-  --   requires = {
-  --     'hrsh7th/cmp-nvim-lsp',
-  --     'hrsh7th/cmp-nvim-lsp-signature-help',
-  --     'hrsh7th/cmp-buffer',
-  --     'hrsh7th/cmp-path',
-  --     'L3MON4D3/LuaSnip',
-  --     'saadparwaiz1/cmp_luasnip',
-  --     'onsails/lspkind-nvim',
-  --   },
-  --   config = function()
-  --     require('user/plugins/cmp')
-  --   end,
-  -- }
+  -- Auto completion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind-nvim',
+    },
+    config = function()
+      require('user/plugins/cmp')
+    end,
+  }
 
   -- NvimTree file editor
   use {
