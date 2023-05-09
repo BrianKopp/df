@@ -106,9 +106,12 @@ awssts() {
 kn() {
     kubectl config set-context --current --namespace="$1"
 }
+
 kcurlname() {
     kubectl run -i --tty --rm --image=radial/busyboxplus:curl --restart=Never $1 -- sh
 }
+
+unalias klf
 klf() {
     if [[ $2 -eq 0 ]]
     then
@@ -117,6 +120,7 @@ klf() {
         kubectl logs -n $1 -f $2
     fi
 }
+
 klfg() {
 	if [[ $3 -eq 0 ]]
 	then
@@ -125,6 +129,7 @@ klfg() {
 		kubectl logs -n $1 -f $2 | grep $3
 	fi
 }
+
 klg() {
 	if [[ $3 -eq 0 ]]
 	then
@@ -133,33 +138,44 @@ klg() {
 		kubectl logs -n $1 $2 | grep $3
 	fi
 }
+
 kld() {
     kubectl logs --all-containers=true --follow deployment/$1
 }
+
 kflapp() {
 	kubectl logs -f --all-containers=true --max-log-requests=30 -l app=$1
 }
+
 kegtop() {
     kubectl get events --sort-by=".lastTimestamp" | grep $1 | tail -n 20 -r
 }
+
 ketop() {
     kubectl get events --sort-by=".lastTimestamp" | tail -n 20 -r
 }
+
+unalias kca
 kca() {
     kubectl logs -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}') | tail -n 50
 }
+
 kcaf() {
     kubectl logs -f -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}')
 }
+
 poll() {
      while true; do $@ ; echo ""; sleep 0.5; done
 }
+
 pollpods() {
     while true; do kubectl get pods --all-namespaces -o wide | grep $1 ; echo ""; sleep 0.5; done
 }
+
 pollbad() {
     while true; do kubectl get pods --all-namespaces -o wide | grep -vE 'cattle|Running|Completed' ; echo ""; sleep 0.5; done
 }
+
 pollhpa() {
     while true; do kubectl get hpa --all-namespaces | grep $1 ; echo ""; sleep 0.5; done
 }
