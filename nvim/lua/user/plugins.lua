@@ -150,6 +150,17 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Visualize lsp progress
+  use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end
+  })
+
+  -- Adds extra functionality over rust analyzer
+  use("simrat39/rust-tools.nvim")
+
   -- NvimTree file editor
   use {
     'kyazdani42/nvim-tree.lua',

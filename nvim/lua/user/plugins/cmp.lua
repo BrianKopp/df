@@ -69,3 +69,35 @@ lspconfig.tsserver.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
 }
+
+lspconfig.html.setup({
+  capabilities = capabilities,
+})
+
+lspconfig.tailwindcss.setup({
+  capabilities = capabilities,
+})
+
+lspconfig.rust_analyzer.setup({
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true
+      },
+    },
+  },
+})
+
+
