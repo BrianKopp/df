@@ -46,7 +46,10 @@ return require('packer').startup(function(use)
   -- Git fugitive
   use {
     'tpope/vim-fugitive',
-    requires = 'tpope/vim-rhubarb'
+    requires = 'tpope/vim-rhubarb',
+    config = function()
+      require('user/plugins/fugitive')
+    end,
   }
 
   -- VIM Maximizer
