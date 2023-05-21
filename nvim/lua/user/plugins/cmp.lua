@@ -66,7 +66,7 @@ require('lspconfig').intelephense.setup({
 })
 
 lspconfig.tsserver.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx"},
   cmd = { "typescript-language-server", "--stdio" },
 }
 
@@ -79,25 +79,6 @@ lspconfig.tailwindcss.setup({
 })
 
 lspconfig.rust_analyzer.setup({
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = {
-          group = "module",
-        },
-        prefix = "self",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true
-      },
-    },
-  },
 })
 
 
