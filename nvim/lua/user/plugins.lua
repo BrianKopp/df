@@ -201,6 +201,14 @@ return require('packer').startup(function(use)
     'github/copilot.vim',
   }
 
+  use {
+    'tpope/vim-surround',
+  }
+
+  use {
+    'tpope/vim-commentary',
+  }
+
   -- Split Lines
   use {
     'AndrewRadev/splitjoin.vim',
