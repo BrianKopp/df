@@ -72,6 +72,7 @@ lspconfig.tsserver.setup {
 
 lspconfig.html.setup({
   capabilities = capabilities,
+  filetypes = { "html", "handlebars" },
 })
 
 lspconfig.tailwindcss.setup({
