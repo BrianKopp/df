@@ -190,6 +190,13 @@ return require('packer').startup(function(use)
     end,
   }
 
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('user/plugins/autotag')
+    end,
+  }
+
   -- auto indent
   use {
     'nmac427/guess-indent.nvim',
