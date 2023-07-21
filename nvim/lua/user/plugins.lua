@@ -216,6 +216,13 @@ return require('packer').startup(function(use)
     'tpope/vim-commentary',
   }
 
+  use {
+    'vim-test/vim-test',
+    config = function()
+      require('user/plugins/vim-test')
+    end,
+  }
+
   -- Split Lines
   use {
     'AndrewRadev/splitjoin.vim',
