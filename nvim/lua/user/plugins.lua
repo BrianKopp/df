@@ -156,6 +156,7 @@ return require('packer').startup(function(use)
   -- Visualize lsp progress
   use({
     "j-hui/fidget.nvim",
+    tag = 'legacy',
     config = function()
       require("fidget").setup()
     end
