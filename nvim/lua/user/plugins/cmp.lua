@@ -66,13 +66,13 @@ require('lspconfig').intelephense.setup({
 })
 
 lspconfig.tsserver.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx"},
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
   cmd = { "typescript-language-server", "--stdio" },
 }
 
 lspconfig.html.setup({
   capabilities = capabilities,
-  filetypes = { "html", "handlebars" },
+  filetypes = { "html", "handlebars", "hbs", "blade" }
 })
 
 lspconfig.tailwindcss.setup({
@@ -82,4 +82,6 @@ lspconfig.tailwindcss.setup({
 lspconfig.rust_analyzer.setup({
 })
 
+lspconfig.golangci_lint_ls.setup{}
+lspconfig.gopls.setup{}
 
