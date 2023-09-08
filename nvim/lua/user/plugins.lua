@@ -224,6 +224,9 @@ return require('packer').startup(function(use)
     end,
   }
 
+  use {
+    'jwalton512/vim-blade'
+  }
   -- Split Lines
   use {
     'AndrewRadev/splitjoin.vim',
