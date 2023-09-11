@@ -82,4 +82,10 @@ lspconfig.tailwindcss.setup({
 lspconfig.rust_analyzer.setup({
 })
 
+lspconfig.terraformls.setup{}
 
+lspconfig.gopls.setup{}
+
+lspconfig.pyright.setup{}
+
+lspconfig.jdtls.setup{}
