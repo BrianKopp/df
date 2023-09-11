@@ -204,10 +204,26 @@ return require('packer').startup(function(use)
     config = function() require('guess-indent').setup {} end,
   }
 
-  -- Github Copilot
+  -- Golang things
   use {
-    'github/copilot.vim',
+    'ray-x/go.nvim',
+    config = function()
+      require('user/plugins/go')
+    end,
   }
+  use 'ray-x/guihua.lua'
+
+  -- Java things
+  use {
+    'mfussenegger/nvim-dap'
+  }
+  use {
+    'mfussenegger/nvim-jdtls'
+  }
+  -- Github Copilot
+  -- use {
+  --   'github/copilot.vim',
+  -- }
 
   use {
     'tpope/vim-surround',
