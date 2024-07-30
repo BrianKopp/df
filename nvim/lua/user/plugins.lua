@@ -24,6 +24,13 @@ return require('packer').startup(function(use)
   -- }
 
   use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      require('user/plugins/theme')
+    end
+  }
+  use {
     'rose-pine/neovim',
     as = 'rose-pine',
     config = function()
