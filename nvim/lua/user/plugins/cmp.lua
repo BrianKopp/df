@@ -79,6 +79,8 @@ lspconfig.tailwindcss.setup({
   capabilities = capabilities,
 })
 
+vim.lsp.set_log_level('debug')
+
 lspconfig.rust_analyzer.setup({
 })
 
@@ -94,3 +96,5 @@ lspconfig.gopls.setup{}
 lspconfig.pyright.setup{}
 
 lspconfig.jdtls.setup{}
+
+lspconfig.clangd.setup{}
