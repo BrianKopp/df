@@ -247,6 +247,9 @@ return require('packer').startup(function(use)
   -- }
 
   use {
+    'dense-analysis/ale'
+  }
+  use {
     'tpope/vim-surround',
   }
 
