@@ -83,6 +83,7 @@ lspconfig.rust_analyzer.setup({
 })
 
 lspconfig.terraformls.setup{}
+lspconfig.tflint.setup{}
 
 lspconfig.golangci_lint_ls.setup{}
 
