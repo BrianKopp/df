@@ -18,6 +18,19 @@ alias gf="git fetch"
 alias pull="git pull"
 alias push="git push"
 alias pushup="git push -u origin HEAD"
+gpum() {
+    git checkout main
+    git pull
+}
+
+unalias grm
+grm() {
+    git checkout main
+    git pull
+    git checkout -
+    git rebase main
+}
+
 unalias gsu
 gsu() {
     CURRENT_BRANCH=$(git branch --show-current)
@@ -72,6 +85,10 @@ alias kdecode="k get secrets -o go-template='{{range \$k,\$v := .data}}{{\$k}}{{
 # AWS MFA update
 alias mfa="aws-mfa --profile bb"
 
+# Bigeye directory helpers
+alias dtf="cd bigeye-terraform/aws/main_account/stacks"
+alias sdp="cd ~/src/be/semantic-data-platform"
+
 # docker aliases
 alias dimg="docker images"
 alias dimgg="docker images | grep"
@@ -88,6 +105,8 @@ alias nsbust="dscacheutil -flushcache"
 alias nsns="nslookup -query=ns"
 alias nscname="nslookup -query=cname"
 alias ttl="dig +noauthority +noquestion +nostats"
+# Route tables
+alias rts="netstat -rn"
 
 # Laravel Sail
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
@@ -111,7 +130,8 @@ kcurlname() {
     kubectl run -i --tty --rm --image=radial/busyboxplus:curl --restart=Never $1 -- sh
 }
 
-unalias klf
+# Remove alias if present
+alias klf >> /dev/null || alias klf
 klf() {
     if [[ $2 -eq 0 ]]
     then
@@ -155,7 +175,8 @@ ketop() {
     kubectl get events --sort-by=".lastTimestamp" | tail -n 20 -r
 }
 
-unalias kca
+# Remove alias if present
+alias kca >> /dev/null || alias kca
 kca() {
     kubectl logs -n kube-system $(kpawg cluster-autoscaler | awk '{print$2}') | tail -n 50
 }
