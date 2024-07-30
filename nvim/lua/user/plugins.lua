@@ -96,8 +96,13 @@ return require('packer').startup(function(use)
       'JoosepAlviste/nvim-ts-context-commentstring',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
+  }
+
+  -- terraform
+  use {
+    'hashivim/vim-terraform',
     config = function()
-      require('user/plugins/treesitter')
+      require('user/plugins/terraform')
     end,
   }
 
