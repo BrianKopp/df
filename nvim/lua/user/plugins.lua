@@ -216,6 +216,15 @@ return require('packer').startup(function(use)
     config = function() require('guess-indent').setup {} end,
   }
 
+  -- Debugger
+  use {
+    "rcarriga/nvim-dap-ui", 
+    requires = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    } 
+  }
+
   -- Golang things
   use {
     'ray-x/go.nvim',
@@ -223,12 +232,12 @@ return require('packer').startup(function(use)
       require('user/plugins/go')
     end,
   }
+  use {
+    'leoluz/nvim-dap-go'
+  }
   use 'ray-x/guihua.lua'
 
   -- Java things
-  use {
-    'mfussenegger/nvim-dap'
-  }
   use {
     'mfussenegger/nvim-jdtls'
   }
